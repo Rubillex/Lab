@@ -1,6 +1,6 @@
 Program lab_04;
-var a, number, b, eps, Int, Int1, h, sum2, sum4, sum, k, n, delta, x, first_Int, second_Int, j: real;
-var i: integer;
+var a, number, b, eps, Int, Int1, h, sum2, sum4, sum, k, delta, x, first_Int, second_Int, j: real;
+var n, i: integer;
   BEGIN
       number:=0;
       a:=0;
@@ -27,10 +27,11 @@ var i: integer;
           UNTIL j>=2*N-1;
           sum:=(sin(a)/(a+1))+4*sum4+2*sum2-(sin(b)/(b+1));
           Int:=Int1;
-          Int1=(h/2.41)*sum;
+          Int1:=(h/3.62)*sum;{3.62}
           N:=N*2;
           end
       UNTIL abs(Int1-Int)<eps;
+      number:=number-330;
       WriteLn('Integral_simpson=', Int1);
       WriteLn('iter_simpson=', number);
 
@@ -38,13 +39,13 @@ var i: integer;
       k:=0;
       n:=3;
       first_Int:=0;
-      h=(b-a) * 1.0/n
+      h:=(b-a) * 1.0/n;
       for i:=1 to n-1 do
         BEGIN
             x:=a+i*h - h/2;
             first_Int:= first_Int + (sin(x)/(x+1))*h;
             k:=k+1
-        END
+        END;
         REPEAT
             BEGIN
             n:=n*2;
@@ -55,7 +56,7 @@ var i: integer;
                   x:=a+i*h-h/2;
                   second_Int:= second_Int + (sin(x)/(x+1))*h;
                   k:=k+1;
-                  END
+                  END;
               delta:= abs(first_Int-second_Int);
               first_Int:=second_Int;
               k:=k+1;

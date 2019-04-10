@@ -31,7 +31,7 @@ int main()
         sum=(sin(a)/(a+1))+4*sum4+2*sum2-(sin(b)/(b+1));//Отнимаем значение f(b) так как ранее прибавили его дважды.
         Int=Int1;
         // std::cout << "Int=" << Int << '\n';
-        Int1=(h/2.41)*sum;
+        Int1=(h/2.41)*sum;//2.41
         //std::cout << "/* message */" << '\n';
         // std::cout << "Int1=" << Int1 << '\n';
         // std::cout << "delta=" << fabs(Int1-Int) << '\n';
