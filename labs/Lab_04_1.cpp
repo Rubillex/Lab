@@ -5,25 +5,29 @@
 using namespace std;
 
 int main (int argc, char const *argv[]) {
-float sum = 0, Eps, x, temp, factorial=1;
-int k=0, z;
+float sum = 0, Eps, temp, factorial1=1, factorial2=1;
+int n=0;
 
-  cout << "x=";
-  cin >> x;
   cout << "Eps=";
   cin >> Eps;
 
   do
     {
-            k++;
-            for (int i=1; i <= k+2; i++)
+            n++;
+            for (int i=1; i <= n; i++)
               {
-                factorial *=i;
+                factorial1 *=i;
               };
-            z=pow(-1,k+2);
-            temp = z*(x+2) / factorial;
+              for (int i=1; i <= 2*n; i++)
+                {
+                  factorial2 *=i;
+                };
+            temp = factorial1 / factorial2;
+            std::cout << "element" << "[" << n << "]=" << temp << '\n';
             sum += temp;
-            factorial = 1;
+            std::cout << "summa" << "[" << n << "]=" << sum << '\n';
+            factorial1 = 1;
+            factorial2 = 1;
     }
     while (abs(temp)>Eps);
 
