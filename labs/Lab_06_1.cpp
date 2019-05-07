@@ -2,7 +2,7 @@
 #include <ctime>
 #include <cstdlib>
 
-#define arr(i,j)    *(arr+i*n+j)
+#define arr(line,column)    *(arr+line*n+column)
 
 using namespace std;
 
@@ -10,7 +10,7 @@ int main()
 {
 	srand(time(NULL));
 
-	int n, i, j, sum1, sum2, temp;
+	int n, line, column, sum1, sum2, temp;
 	//ввод размерности
 	cout << "Your array is arr[n][n]" << endl;
 	cout << "n: ";
@@ -19,50 +19,55 @@ int main()
 	//генерация массива
 	int * arr = (int *)malloc(n * n * sizeof(int));
 
-	for (int i=0; i < n; i++) {
+	for (int line=0; line < n; line++) {
 		cout << " " << endl;
-		for (int j=0; j < n; j++) {
+		for (int column =0; column < n; column++) {
 
-			arr(i,j)= (rand() % 20);
-			cout << arr(i, j) << " ";
+			arr(line, column)= (rand() % 20);
+			cout << arr(line, column) << " ";
 		}
 
 	}
+
+
+
 	//сортировка
 	sum1 = 0;
 	sum2 = 0;
-	i = 0;
-	for (j = 0; j < n; j++) {
-		sum1 += arr(i, j);//считаю сумму чисел первой строки
+	line = 0;
+	for (column = 0; column < n; column++) {
+		sum1 += arr(line, column);//считаю сумму чисел первой строки
 	}
 	cout << "sum1= " << sum1 << endl;
 
-	for (i = 1; i < n; i++)
+	for (line = 1; line < n; line++)
 	{
-		for (j = 0; j < n; j++) {
-			sum2 += arr(i, j);
+		for (column = 0; column < n; column++) {
+			sum2 += arr(line, column);//считаю сумму чисел следующей строки
 		}
-		if (sum1 < sum2)
+
+		if (sum2 > sum1)
 		{
-			for (j = 0; j < n; j++)
+			for (int column = 0; column < n; column++)
 			{
-				temp = arr(i - 1, j);
-				arr(i - 1, j) = arr(i, j);
-				arr(i, j) = temp;
+				temp = arr(line, column);
+				arr(line, column) = arr(line-1, column);
+				arr(line-1, column) = temp;
 			}
 		}
-		sum2 = sum1;
+		sum1 = sum2;
+		sum2 = 0;
 	}
 
 
 
 	//вывод массива
 	cout << "sort:" << endl;
-	for (int i = 0; i < n; i++) {
+	for (int line = 0; line < n; line++) {
 		cout << " " << endl;
-		for (int j = 0; j < n; j++) {
+		for (int column = 0; column < n; column++) {
 
-			cout << arr(i, j) << " ";
+			cout << arr(line, column) << " ";
 		}
 
 	}
