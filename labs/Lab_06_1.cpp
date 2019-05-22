@@ -24,13 +24,7 @@ int main()
 		for (int column =0; column < n; column++) {
 
 			arr(line, column)= (rand() % 20);
-			cout << arr(line, column);
-			if(arr(line, column) > 9) 
-			{
-			    cout << " ";    
-			} else {
-			    cout << "  ";
-			}
+			cout << arr(line, column) << " ";
 		}
 
 	}
@@ -73,13 +67,7 @@ int main()
 		cout << " " << endl;
 		for (int column = 0; column < n; column++) {
 
-			cout << arr(line, column);
-			if(arr(line, column) > 9) 
-			{
-			    cout << " ";    
-			} else {
-			    cout << "  ";
-			}
+			cout << arr(line, column) << " ";
 		}
 
 	}
