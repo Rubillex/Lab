@@ -57,14 +57,13 @@ if (first < second)
 } else
 {
   std::cout << "Error: i>j" << '\n';
+	exit(1);
 }
 
 
 
 
 	//вывод массива
-  if (first < second)
-  {
     	cout << "sort:" << endl;
     	for (int line = 0; line < _line; line++) {
     		cout << " " << endl;
@@ -80,6 +79,6 @@ if (first < second)
     		}
 
     	}
-  }
+
 	return 0;
 }
