@@ -27,8 +27,8 @@ std::cout << "-------" << '\n';
   p = 1;
   for (int i = 0; i<k/2; i++)
   {
-    std::cout << "arr[" << i << "]= " << arr[i] << '\n'; // проверка элемента
-    std::cout << "arr[" << k-1-i << "]= " << arr[k-1-i] << '\n'; // проверка элемента
+    std::cout << "arr[" << i+1 << "]= " << arr[i] << '\n'; // проверка элемента
+    std::cout << "arr[" << k-i << "]= " << arr[k-1-i] << '\n'; // проверка элемента
     temp = arr[i] + arr[k-1-i];
     std::cout << "temp= " << temp << '\n';
     p *= temp;
@@ -38,3 +38,4 @@ std::cout << "-------" << '\n';
 delete [] arr;
 return 0;
 }
+
