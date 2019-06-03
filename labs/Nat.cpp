@@ -19,21 +19,21 @@ int main(int argc, char *argv[])
 
     int *a;
     int size,i;
-    cout << "Enter size: ";
+    cout << "Enter size: "; // размер вектора
     cin >> size ;
     i=0;
     a=new int(size);
-    for(int i=0; i<size; i++)
+    for(int i=0; i<size; i++) //генерация вектора
       {
-        a[i] = (rand() % 100 - 50);
-        cout << a[i] << " ";
+        a[i] = (rand() % 100 - 50); // рандомайзер от -50 до 50
+        cout << a[i] << " "; // вывод вектора
       }
     heapsort(a,i,size);
 
     cout << " " << '\n';
 
     std::cout << "Sort Array:" << '\n';
-    for(i=0; i<size; i++)
+    for(i=0; i<size; i++) //вывод отсортированного вектора
       {
         cout << a[i] << " ";
       }
@@ -44,14 +44,17 @@ int parent(int i)
   {
     return (i/2);
   }
+
 int left(int i)
   {
     return (2*i);
   }
+
 int right(int i)
   {
     return ((2*i)+1);
   }
+  
 void max_heapify(int *a, int i, int size)
 {
     int _left, _right;
