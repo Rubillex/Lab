@@ -8,11 +8,9 @@ int main()
   int number;
   double arr[20];
 
-  cout << "Input the numbers in set (3,20): " << endl;
-  cin >> number;
   cout << "Input array elements: " << endl;
 
-  for(int i = 0; i < number; i++)
+  for(int i = 0; i < 20; i++)
     {
       arr[i] = (rand() % 100 - 50); // генерация чисел от -50 до 50
       cout << arr[i] << " "; // вывод вектора
@@ -20,7 +18,7 @@ int main()
     std::cout << " " << '\n';
 
   double current = arr[0];
-  for(int j = 0; j < number; j++)
+  for(int j = 0; j < 20; j++)
     {
       if(arr[j] >= arr[j+1]) current = arr[j];
       else
