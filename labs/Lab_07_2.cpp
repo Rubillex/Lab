@@ -4,7 +4,6 @@ using namespace std;
 
 int main()
 {
-    char sym1, sym2;
     string Str; //исходная строка
    // string TempWord; //текущее слово
     char TempWord [20];
@@ -15,27 +14,26 @@ int main()
     int temp = 0;
     int maxlen = 0;
     int j=0;
+    int word = 0;
     int k; // переменная для отладочной информации
     cout << "enter the string:" << '\n';
     getline(cin, Str); //ввод строки
-    sym1 = ',';
-    sym2 = ' ';
     for (size_t i=0; i<Str.size(); i++) //цикл по всей строке
     {
-        
-        
+
+
         if (Str[i] == ',') // если запятая, то
         {
-            
-            
+
+
             if(temp>maxlen) // если длина текущего слова больше максимальной длины, то
             {
                 maxlen = temp; // обновление максимальной длины
                 MaxWord = TempWord; // обновление буфера максимальных слов
                // cout << "MaxWord:" << MaxWord << '\n';
             }
-            
-            
+
+
             cout << MaxWord << " "; // вывод текущего макс.слова
             MaxWord.clear(); //очистка буфера максим.слов
             memset(TempWord, 0, sizeof(TempWord)); // очистка буфера текущего слова
@@ -45,9 +43,9 @@ int main()
             j=0;
             maxlen = 0;
         }
-        
-        
-        
+
+
+
         if (Str[i] != ' ' && Str[i] != ',') // если это не пробел и не запятая, то
         {
             if (k>0)
@@ -59,10 +57,13 @@ int main()
             TempWord [j] = Str [i]; // запись символа в буфер слов
             //cout << "TempWord: " << TempWord << '\n';
             j++;
+            if (Str[i+1]==' ' || Str[i+1]==',') {
+              word++;
+            }
         }
-        
-        
-        
+
+
+
         if (Str[i] == ' ') // если это пробел, то
         {
             if(temp>maxlen) // если длина текущего слова больше максимальной длины, то
@@ -77,7 +78,7 @@ int main()
         k++;
         j=0;
         }
-        
+
     }
     if(temp>maxlen) // если длина текущего слова больше максимальной длины, то
             {
@@ -85,8 +86,8 @@ int main()
                 MaxWord = TempWord; // обновление буфера максимальных слов
                 //cout << "MaxWord:" << MaxWord << '\n';
             }
-            
-            
+
+
             cout << MaxWord << " "; // вывод текущего макс.слова
             MaxWord.clear(); //очистка буфера максим.слов
             memset(TempWord, 0, sizeof(TempWord)); // очистка буфера текущего слова
@@ -95,6 +96,10 @@ int main()
             k++;
             j=0;
             maxlen = 0;
+
+            word++;
+            cout << " " << '\n';
+            cout << "Word= " << word << '\n';
 
     return 0;
 }
