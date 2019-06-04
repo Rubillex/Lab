@@ -1,8 +1,10 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 int main()
 {
+  srand(time(NULL));
   int number;
   double arr[20];
 
@@ -12,8 +14,10 @@ int main()
 
   for(int i = 0; i < number; i++)
     {
-      cin >> arr[i];
+      arr[i] = (rand() % 100 - 50); // генерация чисел от -50 до 50
+      cout << arr[i] << " "; // вывод вектора
     }
+    std::cout << " " << '\n';
 
   double current = arr[0];
   for(int j = 0; j < number; j++)
