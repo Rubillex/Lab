@@ -3,27 +3,35 @@
 
 using namespace std;
  int main(){
-   int arr[9];
-   cout << "Input arr" << endl;
-   for (int i = 0; i<10; i++)
+   float arrA[25];
+   float arrB[25];
+   float temp;
+   cout << "Input arrA" << endl;
+   for (int i = 0; i<25; i++)
    {
-     arr[i]= i+1;
-     cout << arr[i] << " ";
+     cin >> arrA[i];
    }
-   for (int j = 1; j<=9; j++)
+
+
+
+   for (int i = 0; i < 25; i++) {
+	   for (int j = 0; j < 24; j++) {
+	     if (arrA[j] > arrA[j+1]){
+	       temp = arrA[j];
+	       arrA[j] = arrA[j+1];
+	       arrA[j+1] = temp;
+	     }
+	   }
+	 }
+
+
+
+   cout << "array A" << endl;
+   for (int i = 0; i<25; i++)
    {
-       if (j < 7) {
-         arr[j] = arr[j+3];
-       } else
-       if (j>=7) {
-         arr[j] = 0;
-       }
+     cout << arrA[i] << " ";
    }
-   std::cout << " " << '\n';
-   for (int k = 0; k<9; k++)
-   {
-     cout << arr[k] << " ";
-   }
-     cout << "0\n";
+
+
  return 0;
  }
