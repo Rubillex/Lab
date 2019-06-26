@@ -2,7 +2,7 @@
 #include <ctime>
 #include <cstdlib>
 
-#define arr(line,column)    *(arr+line*n+column)
+//#define arr(line,column)    *(arr+line*n+column)
 
 using namespace std;
 
@@ -17,7 +17,8 @@ int main()
 	cin >> n;
 
 	//генерация массива
-	int * arr = (int *)malloc(n * n * sizeof(int));
+	//int * arr = (int *)malloc(n * n * sizeof(int));
+	int * arr = new int[n][n];
 
 	for (int line=0; line < n; line++) {
 		cout << " " << endl;
