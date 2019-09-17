@@ -9,10 +9,11 @@ return exp(x);
 
 int main()
 {
-    
+int n;
 //массивы
-int * x = new int[n+1];
-int * y = new int[n+1];
+int * x = new int[n];
+int * y = new int[n];
+int * pn = new int[n];
 
 
 double test_x;
@@ -20,10 +21,9 @@ double test_x;
 //границы отрезка и n
 double a;
 double b;
-double n;
+double h;
 
 //значение функции в точке
-double y;
 
 
 std::cout << "input a:" << std::endl;
@@ -36,6 +36,11 @@ std::cin >> n;
 //определение шага
 h = (b - a)/n;
 
+n += 1;
+
+
+cout << "h=" << h << endl;
+
 
 
 //заполнение массива ИКСАМИ и ЗНАЧЕНИЯМИ ФУНКЦИИ
@@ -43,8 +48,11 @@ x[0] = a;
 
 for(int i = 1; i <= n; i++)
 {
-    x[i] = a+h;
+    x[i] = x[i-1] + h;
+    cout << "x[" << i << "]=" << x[i] << endl;
 }
+
+
 
 for(int i = 0; i <= n; i++)
 {
@@ -60,19 +68,36 @@ double q;
 // q = (xi - x0)/h
 double L = 0;
 double R;
-double pn;
-
-//for
+double temp_pn = 1;
 
 for(int i = 0; i <= n; i++)
 {
-L += y[i] * pn;
+    for(int j = 0; j <= n; j++)
+    {
+        if(i!=j)
+        {
+            temp_pn *= (q-j);   
+        }
+    }
+    pn[i]=pow(-1,n-i)*temp_pn;
+    temp_pn = 1;
+}
+
+
+for(int i = 0; i <= n; i++)
+{
+    
+    L += y[i] * pn[i];
 }
 
 double result;
 
-result = testX(test_x);
 
-std::cout << "resultat= " << result << std::endl;
+for(int i = 0; i <=n; i++)
+{
+
+std::cout << "resultat= " << y[i] << std::endl;  
+}
+
 return 0;
 }
