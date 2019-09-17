@@ -11,9 +11,9 @@ int main()
 {
 int n;
 //массивы
-int * x = new int[n];
-int * y = new int[n];
-int * pn = new int[n];
+double * x = new double[n];
+double * y = new double[n];
+double * pn = new double[n];
 
 
 double test_x;
