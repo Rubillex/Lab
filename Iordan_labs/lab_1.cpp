@@ -1,57 +1,52 @@
+
+#include <stdio.h>
 #include <iostream>
-#include <cmath>
+#include <conio.h>
+#include <math.h>
 using namespace std;
 
-double testX(int x)
+void fun(int *x, int *f, int n)
 {
-return exp(x);
+	for (int i=0; i<n; i++)
+	{
+		f[i]=exp(x[i]);
+	}
 }
 
 int main()
 {
-int x[5] = {1, 2, 3, 4, 5};
-
-double test_x;
-
-//границы отрезка и n
-double a;
-double b;
-double n;
-
-//значение функции в точке
-double y;
-
-
-std::cout << "input a:" << std::endl;
-std::cin >> a;
-std::cout << "input b:" << std::endl;
-std::cin >> b;
-std::cout << "input n:" << std::endl;
-std::cin >> n;
-
-//определение шага
-double h;
-h = (b - a)/n;
-
-
-double q;
-// q = (xi - x0)/h
-double L = 0;
-double R;
-double pn;
-
-//for
-
-for(int i = 0; i <= n; i++)
-{
-y = testX(x[i]);
-L += y*pn;
-}
-
-double result;
-
-result = testX(test_x);
-
-std::cout << "resultat= " << result << std::endl;
-return 0;
+	setlocale(LC_ALL, "Russian");
+	int x[5]={2, 4, 6, 8, 10}; //значения х
+	int f[5]; //значения функции
+	int n=5, i, j;
+	fun(x, f, n); //функция
+	double xg=2.6;//тестовая точка
+	double Ln=0;//ЛАГРАНЖ
+	double pg; //погрешность
+	double q; //ку
+	double p; //ПЭ
+	double fi; //значение функции
+	fi=exp(xg);
+	cout<<"Функция f(i)=e^x";
+	for(i=0; i<=n; i++)
+	{
+	    
+	    //начинаемсчитать многочлен Лагранджа
+		q=1;
+		for(j=0; j<=n; j++)
+		{
+			if (i!=j)
+			{
+				p=(xg-x[j])/(x[i]-x[j]);
+				q=q*p;
+			}
+		}
+		Ln=Ln+q*f[i];
+		
+	}
+	pg=fabs(fi-Ln); //погрешность относительно тестовой точки
+	cout<<"\nИнтерполяционный многочлен Лагранжа:\n"<<Ln;
+	cout<<"\nФункция f(i) равна:\n"<<fi;
+	cout<<"\nПогрешность равна:\n"<<pg;
+	return 0;
 }
