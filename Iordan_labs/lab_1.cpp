@@ -5,26 +5,30 @@
 #include <math.h>
 using namespace std;
 
-void fun(int *x, int *f, int n)
+double fun(double *x, double *f, int n)
 {
-	for (int i=0; i<n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		f[i]=exp(x[i]);
 	}
 }
 
+int fact(int per)
+{
+    int res = 1;
+    for (int i = 1; i <= per; i++)
+    {
+        res*= i;
+    }
+    return res;
+}
+
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	double *x = new double[n];
-	double *f = new double[n];
 	
-	    //int x[5]={2, 4, 6, 8, 10}; //значения х
-	    //int f[5]; //значения функции
-	    
 	int n, i, j;
 	double a, b;
-	
 	//ввод отрезка
 	cout << "a=";
 	cin >> a;
@@ -34,6 +38,11 @@ int main()
 	//ввод n
 	cout << "n=";
 	cin >> n;
+	
+	
+	double *x = new double[n];
+	double *f = new double[n];
+	
 	
 	//шаг
 	double h;
@@ -52,28 +61,47 @@ int main()
 	double pg; //погрешность
 	double q; //ку
 	double p; //ПЭ
-	double fi; //значение функции
+	double fi; //значение функции в тестовой точке
+	double temp; //temp
 	fi=exp(xg);
 	cout<<"Функция f(i)=e^x";
+	
+	//начинаемсчитать многочлен Лагранджа
+	q=(xg-x[0])/h;
+		
 	for(i=0; i<=n; i++)
 	{
-	    
-	    //начинаемсчитать многочлен Лагранджа
-		q=1;
+	    temp = 1;
 		for(j=0; j<=n; j++)
 		{
 			if (i!=j)
 			{
-				p=(xg-x[j])/(x[i]-x[j]);
-				q=q*p;
+			    temp*=(q-j);
 			}
 		}
-		Ln=Ln+q*f[i];
-		
+		p =(pow(-1,n-i)) * (temp / ( fact(i) * fact(n-i) ));
+		Ln+=p*f[i];
 	}
-	pg=fabs(fi-Ln); //погрешность относительно тестовой точки
+	
+	
+	pg=fabs(fi-Ln); //Практическая погрешность
+	
+	double omeg = 1;
+	double teor_pog;
+	
+	for(i = 0; i <= n; i++)
+	{
+	    omeg*=(q-i);
+	}
+	
+	teor_pog = pow(h,n+1) * (exp(b) / fact(n+1)) * omeg;
+	
 	cout<<"\nИнтерполяционный многочлен Лагранжа:\n"<<Ln;
 	cout<<"\nФункция f(i) равна:\n"<<fi;
 	cout<<"\nПрактическая погрешность равна:\n"<<pg;
+	cout<<"\nТеоретическая погрешность равна:\n"<<teor_pog;
+	
+	delete [] x;
+	delete [] f;
 	return 0;
 }
