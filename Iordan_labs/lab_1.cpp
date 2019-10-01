@@ -7,7 +7,7 @@ using namespace std;
 
 double fun(double *x, double *f, int n)
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i <= n; i++)
 	{
 		f[i]=exp(x[i]);
 	}
@@ -40,8 +40,8 @@ int main()
 	cin >> n;
 	
 	
-	double *x = new double[n];
-	double *f = new double[n];
+	double *x = new double[n+1];
+	double *f = new double[n+1];
 	
 	
 	//шаг
@@ -50,7 +50,7 @@ int main()
 	
 	
 	x[0] = a;
-	for(i=1; i < n; i++)
+	for(i=1; i <= n; i++)
 	{
 	    x[i] = x[i-1] + h;
 	}
@@ -87,19 +87,19 @@ int main()
 	pg=fabs(fi-Ln); //Практическая погрешность
 	
 	double omeg = 1;
-	double teor_pog;
+	double pog;
 	
 	for(i = 0; i <= n; i++)
 	{
 	    omeg*=(q-i);
 	}
 	
-	teor_pog = pow(h,n+1) * (exp(b) / fact(n+1)) * omeg;
+	pog = pow(h,n+1) * (exp(b) / fact(n+1)) * omeg;
 	
 	cout<<"\nИнтерполяционный многочлен Лагранжа:\n"<<Ln;
 	cout<<"\nФункция f(i) равна:\n"<<fi;
 	cout<<"\nПрактическая погрешность равна:\n"<<pg;
-	cout<<"\nТеоретическая погрешность равна:\n"<<teor_pog;
+	cout<<"\nТеоретическая погрешность равна:\n"<<pog;
 	
 	delete [] x;
 	delete [] f;
