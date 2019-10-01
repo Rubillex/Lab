@@ -16,10 +16,37 @@ void fun(int *x, int *f, int n)
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	int x[5]={2, 4, 6, 8, 10}; //значения х
-	int f[5]; //значения функции
-	int n=5, i, j;
-	fun(x, f, n); //функция
+	double *x = new double[n];
+	double *f = new double[n];
+	
+	    //int x[5]={2, 4, 6, 8, 10}; //значения х
+	    //int f[5]; //значения функции
+	    
+	int n, i, j;
+	double a, b;
+	
+	//ввод отрезка
+	cout << "a=";
+	cin >> a;
+	cout << "b=";
+	cin >> b;
+	
+	//ввод n
+	cout << "n=";
+	cin >> n;
+	
+	//шаг
+	double h;
+	h = (b-a)/n;
+	
+	
+	x[0] = a;
+	for(i=1; i < n; i++)
+	{
+	    x[i] = x[i-1] + h;
+	}
+	
+	fun(x, f, n); //составление функции
 	double xg=2.6;//тестовая точка
 	double Ln=0;//ЛАГРАНЖ
 	double pg; //погрешность
@@ -47,6 +74,6 @@ int main()
 	pg=fabs(fi-Ln); //погрешность относительно тестовой точки
 	cout<<"\nИнтерполяционный многочлен Лагранжа:\n"<<Ln;
 	cout<<"\nФункция f(i) равна:\n"<<fi;
-	cout<<"\nПогрешность равна:\n"<<pg;
+	cout<<"\nПрактическая погрешность равна:\n"<<pg;
 	return 0;
 }
