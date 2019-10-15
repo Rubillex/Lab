@@ -1,8 +1,8 @@
-
 #include <stdio.h>
 #include <iostream>
 #include <conio.h>
 #include <math.h>
+#include <iomanip>
 using namespace std;
 
 double fun(double *x, double *f, int n)
@@ -11,16 +11,6 @@ double fun(double *x, double *f, int n)
 	{
 		f[i]=exp(x[i]);
 	}
-}
-
-int fact(int per)
-{
-    int res = 1;
-    for (int i = 1; i <= per; i++)
-    {
-        res*= i;
-    }
-    return res;
 }
 
 int main()
@@ -56,7 +46,9 @@ int main()
 	}
 	
 	fun(x, f, n); //составление функции
-	double xg=2.6;//тестовая точка
+	double xg;//тестовая точка
+	cout << "xg=";
+	cin >> xg;
 	double Ln=0;//ЛАГРАНЖ
 	double pg; //погрешность
 	double q; //ку
@@ -66,20 +58,30 @@ int main()
 	fi=exp(xg);
 	cout<<"Функция f(i)=e^x";
 	
-	//начинаемсчитать многочлен Лагранджа
+	//начинаем считать многочлен Лагранджа
 	q=(xg-x[0])/h;
+		
+		
 		
 	for(i=0; i<=n; i++)
 	{
 	    temp = 1;
-		for(j=0; j<=n; j++)
+		for(j=0; j<i; j++)
 		{
-			if (i!=j)
-			{
-			    temp*=(q-j);
-			}
+			    
+		    temp*=(q-j)/(i-j);
+			    
 		}
-		p =(pow(-1,n-i)) * (temp / ( fact(i) * fact(n-i) ));
+		
+		for(j=1; j<=(n-i); j++)
+		{
+
+		    temp*=(q-i-j)/j;
+
+		}
+		
+		
+		p =pow(-1,n-i) * temp;
 		Ln+=p*f[i];
 	}
 	
@@ -91,15 +93,15 @@ int main()
 	
 	for(i = 0; i <= n; i++)
 	{
-	    omeg*=(q-i);
+	    omeg*=(q-i)/(i+1);
 	}
 	
-	pog = pow(h,n+1) * (exp(b) / fact(n+1)) * omeg;
+	pog =pow(h,n+1) * exp(b) *fabs(omeg);
 	
-	cout<<"\nИнтерполяционный многочлен Лагранжа:\n"<<Ln;
-	cout<<"\nФункция f(i) равна:\n"<<fi;
-	cout<<"\nПрактическая погрешность равна:\n"<<pg;
-	cout<<"\nТеоретическая погрешность равна:\n"<<pog;
+	cout<<"\nИнтерполяционный многочлен Лагранжа:\n" << setprecision(16) <<Ln;
+	cout<<"\nФункция f(i) равна:\n" << setprecision(16) <<fi;
+	cout<<"\nПрактическая погрешность равна:\n" <<pg;
+	cout<<"\nТеоретическая погрешность равна:\n" <<pog;
 	
 	delete [] x;
 	delete [] f;
