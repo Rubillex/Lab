@@ -9,8 +9,9 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	int n, i, j, k;
+	int n, i, j, k, FFF;
 	double a, b;
+	
 	//ввод отрезка
 	cout << "a=";
 	cin >> a;
@@ -22,12 +23,12 @@ int main()
 	cin >> n;
 
 
-	double *x = new double[n+1];
-	double *f = new double[n+1];
-	double* xkj = new double[n+1][n+1];
+	double *x = new double[n];
+	double *f = new double[n];
+	double *xkj = new double[n];
 
-	double q[3] = {2, 1, 0.55555, 0.65214};
-	double xj[3] = {0, 0.57735, 0.77459, 0.33998};
+	double q[4] = {2, 1, 0.55555, 0.65214};
+	double xj[4] = {0, 0.57735, 0.77459, 0.33998};
 
 
 	//шаг
@@ -41,37 +42,32 @@ int main()
 	    x[i] = x[i-1] + h;
 	}
 
-	for(k=0; k < n; k++)
+	for(k=0; k <= n; k++)
 	{
-			for(j=0; j < n; j++)
-			{
-				xkj[k][j]=(x[j]+x[j+1])/2+xj[j]*(b-a)/(2*(n-1));
-			}
+	    xkj[k]=(x[k]+x[k+1])/2+xj[k]*(b-a)/(2*(n-1));
 	}
 
 
 
 	for (int i = 0; i <= n; i++)
 	{
-		f[i]=exp(xkj[j][i]);
-	} //составление функции
+	    f[i]=exp(xkj[i]); //составление функции
+	}
+	
 	double xg;//тестовая точка
-	cout << "xg=";
-	cin >> xg;
 	double result=0;//ЛАГРАНЖ
-	double pg; //погрешность
-	double q; //ку
+	double pg = 0; //погрешность
+	double pog = 0;
 	double p; //ПЭ
 	double fi; //значение функции в тестовой точке
 	double temp; //temp
-	fi=exp(xg);
 	cout<<"Функция f(i)=e^x";
 
 	//начинаем считать
 
 	double sum=0;
 
-	for(j=1; j <= n; j++)
+	for(j=0; j <= n; j++)
 	{
 		sum+=q[j]*f[j];
 	}
@@ -79,14 +75,13 @@ int main()
 	result = (b-a)/(2*(n-1))*sum;
 
 
-	cout<<"\nИнтерполяционный многочлен Лагранжа:\n" << setprecision(16) <<result;
-	cout<<"\nФункция f(i) равна:\n" << setprecision(16) <<fi;
+	cout<<"\nИнтеграл методом Гауса:\n" << setprecision(16) <<result;
+    //	cout<<"\nФункция f(i) равна:\n" << setprecision(16) <<fi;
 	cout<<"\nПрактическая погрешность равна:\n" <<pg;
 	cout<<"\nТеоретическая погрешность равна:\n" <<pog;
-
-	delete [] x;
-	delete [] f;
-  delete [] xj;
-  delete [] xkj;
+	
+    delete [] x;
+    delete [] f;
+    delete [] xkj;
 	return 0;
 }
