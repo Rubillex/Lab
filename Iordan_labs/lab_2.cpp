@@ -25,8 +25,8 @@ int main()
 	double *x = new double[n+1];
 	double *f = new double[n+1];
 	double* xkj = new double[n+1][n+1];
-  
-	double q[3] = {2, 1, 0.55555, 0.65214}; 
+
+	double q[3] = {2, 1, 0.55555, 0.65214};
 	double xj[3] = {0, 0.57735, 0.77459, 0.33998};
 
 
@@ -43,14 +43,14 @@ int main()
 
 	for(k=0; k < n; k++)
 	{
-		for(j=0; j < n; j++)
-		{
-			xkj[k][j]=(x[j]+x[j+1])/2+xj[j]*(b-a)/(2*(n-1));
-		}
+			for(j=0; j < n; j++)
+			{
+				xkj[k][j]=(x[j]+x[j+1])/2+xj[j]*(b-a)/(2*(n-1));
+			}
 	}
 
 
-	
+
 	for (int i = 0; i <= n; i++)
 	{
 		f[i]=exp(xkj[j][i]);
@@ -68,14 +68,14 @@ int main()
 	cout<<"Функция f(i)=e^x";
 
 	//начинаем считать
-	
+
 	double sum=0;
 
 	for(j=1; j <= n; j++)
 	{
 		sum+=q[j]*f[j];
 	}
-	
+
 	result = (b-a)/(2*(n-1))*sum;
 
 
