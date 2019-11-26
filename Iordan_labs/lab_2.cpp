@@ -19,6 +19,7 @@ double fact(double x)
 int main()
 {
 	setlocale(LC_ALL, "Russian");
+	setlocale(0, "");
 
 	int n, N, i, j, k, FFF;
 	double a, b;
@@ -66,30 +67,30 @@ int main()
 	       xkj=(x[k]+x[k+1])/2+xj[j]*(b-a)/(2*n);
 	       f[k]=exp(xkj);
 	       sumF+=f[k];
-	       cout << "sumF=" << sumF << endl;
+	       //cout << "sumF=" << sumF << endl;
     	}
     	sumAll += q[j] * sumF;
     }
-    
-    
+
+
 	double result=0;
 	double Int = exp(b) - exp(a);
-	
+
 
 	result = (b-a)/(2*n)*sumAll;
-    
+
     double ppog, tpog;
-    
+
 	ppog = fabs(result - Int);
 
 	tpog = pow(b-a, 2*n+1)/pow(N,2*n) * pow(fact(n),4)/((pow(fact(2*n),3)*(2*n+1))) * exp(b);
 
 
 
-	cout<<"\nИнтеграл методом Гауса:\n" << setprecision(16) <<result;
-    cout<<"\nТочное значение интеграла:\n" << setprecision(16) <<Int;
-	cout<<"\nПрактическая погрешность равна:\n" << ppog;
-	cout<<"\nТеоретическая погрешность равна:\n" << tpog;
+	cout<<"\nIntegral metodom Gaussa:\n" << setprecision(16) <<result;
+    cout<<"\nIntegral:\n" << setprecision(16) <<Int;
+	cout<<"\nPract.Pogr:\n" << ppog;
+	cout<<"\nTeor.Pogr:\n" << tpog;
 
     delete [] x;
     delete [] f;
