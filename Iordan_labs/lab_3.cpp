@@ -1,4 +1,6 @@
 // Метод_Ньютона.cpp: определяет точку входа для консольного приложения
+
+// sourse http://statistica.ru/branches-maths/chislennye-metody-resheniya-uravneniy/#s3b
 #include <iostream>
 #include <math.h>
 
